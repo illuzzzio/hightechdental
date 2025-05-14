@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Bot, User, Send, Loader2 } from "lucide-radix-icons"; // Assuming these icons exist or similar from lucide-react
+import { Bot, User, Send, Loader2 } from "lucide-react"; // Fixed import path
 import { getDentalAssistantResponse } from "@/lib/actions";
 import type { DentalAssistantInput } from "@/ai/flows/dental-assistant";
 import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
