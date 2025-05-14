@@ -8,13 +8,14 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
+  FormDescription, // Added FormDescription here
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription as CardDesc, CardHeader, CardTitle } from "@/components/ui/card"; // Aliased CardDescription to avoid conflict
 import { useAuth } from "@/contexts/AuthContext";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/hooks/use-toast";
@@ -56,7 +57,7 @@ export function PatientLookupForm() {
       <CardHeader className="text-center">
         <Users className="h-12 w-12 mx-auto text-primary" />
         <CardTitle className="text-2xl font-bold">Patient Portal</CardTitle>
-        <CardDescription>Enter your email to view your appointment status.</CardDescription>
+        <CardDesc>Enter your email to view your appointment status.</CardDesc>
       </CardHeader>
       <CardContent>
         <Form {...form}>
