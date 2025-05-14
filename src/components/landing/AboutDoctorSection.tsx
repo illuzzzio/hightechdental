@@ -31,7 +31,7 @@ export function AboutDoctorSection() {
               </CardHeader>
               <CardContent className="space-y-4 text-foreground/90">
                 <p className="text-lg">
-                  Dr. Sidharth Malhotra is a dedicated and experienced dentist committed to providing the highest quality dental care. With a passion for creating healthy and beautiful smiles, Dr. Malhotra stays updated with the latest advancements in dentistry to offer state-of-the-art treatments.
+                  Dr. Sidharth Malhotra is a dedicated and experienced dentist with over two decades of experience, committed to providing the highest quality dental care. With a passion for creating healthy and beautiful smiles, Dr. Malhotra stays updated with the latest advancements in dentistry to offer state-of-the-art treatments.
                 </p>
                 <p>
                   His patient-centric approach ensures that every individual receives personalized care tailored to their unique needs and concerns. Whether it's a routine check-up or a complex dental procedure, you can trust Dr. Malhotra for compassionate and professional service.
