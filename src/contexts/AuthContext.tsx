@@ -19,7 +19,7 @@ const AuthContext = createContext<AuthContextProps | undefined>(undefined);
 
 // Hardcoded doctor credentials (for demo purposes)
 const DOCTOR_USERNAME = "sidharth5450";
-const DOCTOR_PASSWORD = "Asassin@1212";
+const DOCTOR_PASSWORD = "Assassin@1212";
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [doctor, setDoctor] = useState<Doctor | null>(null);
