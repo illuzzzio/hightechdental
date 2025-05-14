@@ -51,7 +51,7 @@ export function LocationSection() {
             {/* Placeholder for an actual map embed or a static map image */}
             <Link href={googleMapsUrl} target="_blank" rel="noopener noreferrer">
               <Image
-                src="https://placehold.co/600x400.png" // Placeholder for map image
+                src="/images/hola.png" // Placeholder for map image
                 alt="Clinic Location Map"
                 width={600}
                 height={400}

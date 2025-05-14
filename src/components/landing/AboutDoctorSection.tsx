@@ -13,7 +13,7 @@ export function AboutDoctorSection() {
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="md:w-1/3 flex justify-center">
             <Image
-              src="https://placehold.co/400x400.png"
+              src="/images/sid.jpg"
               alt="Dr. Sidharth Malhotra"
               width={300}
               height={300}
