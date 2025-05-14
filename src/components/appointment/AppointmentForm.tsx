@@ -1,4 +1,3 @@
-
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -26,9 +25,16 @@ import { format } from "date-fns";
 import { CalendarIcon, Clock } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { bookAppointment } from "@/lib/actions"; // Server action
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { useState } from "react";
 
+// Updated Zod schema for 12-hour format with AM/PM
 const appointmentFormSchema = z.object({
   patientName: z.string().min(2, {
     message: "Name must be at least 2 characters.",
@@ -42,13 +48,27 @@ const appointmentFormSchema = z.object({
   appointmentDate: z.date({
     required_error: "A date for the appointment is required.",
   }),
-  appointmentTime: z.string().regex(/^([01]\d|2[0-3]):([0-5]\d)$/, { // HH:MM format
-    message: "Please enter a valid time in HH:MM format (e.g., 14:30).",
-  }),
+  appointmentTime: z
+    .string()
+    .regex(/^(0?[1-9]|1[0-2]):[0-5][0-9] ?(AM|PM)$/i, {
+      message:
+        "Please enter a valid time in HH:MM AM/PM format (e.g., 02:30 PM).",
+    }),
   notes: z.string().optional(),
 });
 
 export type AppointmentFormValues = z.infer<typeof appointmentFormSchema>;
+
+// Converts 12-hour time to 24-hour time
+function convertTo24Hour(time12h: string): string {
+  const [time, modifier] = time12h.toUpperCase().trim().split(" ");
+  let [hours, minutes] = time.split(":").map(Number);
+
+  if (modifier === "PM" && hours < 12) hours += 12;
+  if (modifier === "AM" && hours === 12) hours = 0;
+
+  return `${String(hours).padStart(2, "0")}:${String(minutes).padStart(2, "0")}`;
+}
 
 export function AppointmentForm() {
   const { toast } = useToast();
@@ -71,19 +91,23 @@ export function AppointmentForm() {
     try {
       const result = await bookAppointment({
         ...data,
-        appointmentDate: format(data.appointmentDate, "yyyy-MM-dd"), // Format date for server
+        appointmentDate: format(data.appointmentDate, "yyyy-MM-dd"),
+        appointmentTime: convertTo24Hour(data.appointmentTime),
       });
 
       if (result.success) {
         toast({
           title: "Appointment Booked!",
-          description: "Your appointment request has been sent. We will contact you shortly.",
+          description:
+            "Your appointment request has been sent. We will contact you shortly.",
         });
         form.reset();
       } else {
         toast({
           title: "Booking Failed",
-          description: result.error || "Could not book appointment. Please try again.",
+          description:
+            result.error ||
+            "Could not book appointment. Please try again.",
           variant: "destructive",
         });
       }
@@ -99,16 +123,26 @@ export function AppointmentForm() {
   }
 
   return (
-    <section id="book-appointment" className="py-16 md:py-24 bg-gradient-to-b from-secondary/20 to-background dark:from-secondary/10 dark:to-background">
+    <section
+      id="book-appointment"
+      className="py-16 md:py-24 bg-gradient-to-b from-secondary/20 to-background dark:from-secondary/10 dark:to-background"
+    >
       <div className="container mx-auto px-4">
         <Card className="max-w-2xl mx-auto shadow-xl">
           <CardHeader className="text-center">
-            <CardTitle className="text-3xl font-bold text-primary">Book an Appointment</CardTitle>
-            <CardDescription>Fill out the form below to schedule your visit.</CardDescription>
+            <CardTitle className="text-3xl font-bold text-primary">
+              Book an Appointment
+            </CardTitle>
+            <CardDescription>
+              Fill out the form below to schedule your visit.
+            </CardDescription>
           </CardHeader>
           <CardContent>
             <Form {...form}>
-              <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+              <form
+                onSubmit={form.handleSubmit(onSubmit)}
+                className="space-y-8"
+              >
                 <FormField
                   control={form.control}
                   name="patientName"
@@ -130,7 +164,11 @@ export function AppointmentForm() {
                       <FormItem>
                         <FormLabel>Email Address</FormLabel>
                         <FormControl>
-                          <Input type="email" placeholder="john.doe@example.com" {...field} />
+                          <Input
+                            type="email"
+                            placeholder="john.doe@example.com"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -143,7 +181,11 @@ export function AppointmentForm() {
                       <FormItem>
                         <FormLabel>Phone Number</FormLabel>
                         <FormControl>
-                          <Input type="tel" placeholder="9876543210" {...field} />
+                          <Input
+                            type="tel"
+                            placeholder="9876543210"
+                            {...field}
+                          />
                         </FormControl>
                         <FormMessage />
                       </FormItem>
@@ -176,13 +218,17 @@ export function AppointmentForm() {
                               </Button>
                             </FormControl>
                           </PopoverTrigger>
-                          <PopoverContent className="w-auto p-0" align="start">
+                          <PopoverContent
+                            className="w-auto p-0"
+                            align="start"
+                          >
                             <Calendar
                               mode="single"
                               selected={field.value}
                               onSelect={field.onChange}
                               disabled={(date) =>
-                                date < new Date(new Date().setHours(0,0,0,0)) // Disable past dates
+                                date <
+                                new Date(new Date().setHours(0, 0, 0, 0))
                               }
                               initialFocus
                             />
@@ -197,33 +243,46 @@ export function AppointmentForm() {
                     name="appointmentTime"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Preferred Time (HH:MM)</FormLabel>
+                        <FormLabel>Preferred Time (HH:MM AM/PM)</FormLabel>
                         <FormControl>
                           <div className="relative">
-                            <Input type="time" placeholder="e.g., 10:30" {...field} />
-                             <Clock className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-50 pointer-events-none" />
+                            <Input
+                              type="text"
+                              placeholder="e.g., 02:30 PM"
+                              {...field}
+                            />
+                            <Clock className="absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 opacity-50 pointer-events-none" />
                           </div>
                         </FormControl>
-                        <FormDescription>Use 24-hour format (e.g., 14:30 for 2:30 PM)</FormDescription>
+                        <FormDescription>
+                          Use 12-hour format with AM or PM (e.g., 02:30 PM)
+                        </FormDescription>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                 <FormField
+                <FormField
                   control={form.control}
                   name="notes"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Additional Notes (Optional)</FormLabel>
                       <FormControl>
-                        <Input placeholder="Any specific concerns or requests?" {...field} />
+                        <Input
+                          placeholder="Any specific concerns or requests?"
+                          {...field}
+                        />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
                   )}
                 />
-                <Button type="submit" className="w-full md:w-auto" disabled={isSubmitting}>
+                <Button
+                  type="submit"
+                  className="w-full md:w-auto"
+                  disabled={isSubmitting}
+                >
                   {isSubmitting ? "Submitting..." : "Request Appointment"}
                 </Button>
               </form>
@@ -234,3 +293,4 @@ export function AppointmentForm() {
     </section>
   );
 }
+
