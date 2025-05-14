@@ -6,9 +6,17 @@ import type { Appointment } from "./types";
 // import { collection, addDoc, serverTimestamp, getDocs, doc, updateDoc, deleteDoc, query, where, writeBatch } from "firebase/firestore";
 import { revalidatePath } from "next/cache";
 
-// Simulating Firestore for now
-let appointments_db: Appointment[] = [];
-let nextId = 1;
+// Initialize in-memory store on the globalThis object to persist across hot reloads in development
+// Using unique names for global variables to avoid potential conflicts.
+if (typeof (globalThis as any).appointments_db_malhotra === 'undefined') {
+  (globalThis as any).appointments_db_malhotra = [];
+}
+if (typeof (globalThis as any).nextId_db_malhotra === 'undefined') {
+  (globalThis as any).nextId_db_malhotra = 1;
+}
+
+// Use a direct reference to the global array for modifications
+const appointments_db: Appointment[] = (globalThis as any).appointments_db_malhotra;
 
 interface BookAppointmentData {
   patientName: string;
@@ -21,23 +29,18 @@ interface BookAppointmentData {
 
 export async function bookAppointment(data: BookAppointmentData): Promise<{ success: boolean; appointmentId?: string; error?: string }> {
   try {
-    // Simulate Firestore addDoc
+    // Increment nextId directly on globalThis
+    const newAppointmentId = ((globalThis as any).nextId_db_malhotra++).toString();
     const newAppointment: Appointment = {
       ...data,
-      id: (nextId++).toString(),
+      id: newAppointmentId,
       status: "pending",
       bookedAt: new Date(), // In Firestore, use serverTimestamp()
     };
-    appointments_db.push(newAppointment);
+    appointments_db.push(newAppointment); // Push to the global array
     
-    // console.log("Booking appointment (simulated):", newAppointment);
-    // const docRef = await addDoc(collection(db, "appointments"), {
-    //   ...data,
-    //   status: "pending",
-    //   bookedAt: serverTimestamp(),
-    // });
-
     revalidatePath("/admin-dashboard"); // Revalidate admin dashboard to show new appointment
+    revalidatePath("/patient-dashboard"); // Revalidate patient dashboard
     return { success: true, appointmentId: newAppointment.id };
   } catch (error) {
     console.error("Error booking appointment:", error);
@@ -46,30 +49,20 @@ export async function bookAppointment(data: BookAppointmentData): Promise<{ succ
 }
 
 export async function getAppointments(): Promise<Appointment[]> {
-  // Simulate Firestore getDocs
-  // const querySnapshot = await getDocs(collection(db, "appointments"));
-  // const appointments = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Appointment));
-  // return appointments.sort((a, b) => (b.bookedAt as any) - (a.bookedAt as any)); // Sort by newest first
+  // Return a copy sorted by newest first
   return [...appointments_db].sort((a,b) => (new Date(b.bookedAt).getTime()) - (new Date(a.bookedAt).getTime()));
 }
 
 export async function getAppointmentsByEmail(email: string): Promise<Appointment[]> {
-  // Simulate Firestore query
-  // const q = query(collection(db, "appointments"), where("patientEmail", "==", email));
-  // const querySnapshot = await getDocs(q);
-  // const appointments = querySnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Appointment));
-  // return appointments.sort((a, b) => (b.bookedAt as any) - (a.bookedAt as any));
+  // Filter from the global array and return a sorted copy
   return appointments_db.filter(app => app.patientEmail === email).sort((a,b) => (new Date(b.bookedAt).getTime()) - (new Date(a.bookedAt).getTime()));
 }
 
 export async function updateAppointmentStatus(appointmentId: string, status: "approved" | "cancelled"): Promise<{ success: boolean; error?: string }> {
   try {
-    // Simulate Firestore updateDoc
-    // const appointmentRef = doc(db, "appointments", appointmentId);
-    // await updateDoc(appointmentRef, { status });
     const appIndex = appointments_db.findIndex(app => app.id === appointmentId);
     if (appIndex > -1) {
-      appointments_db[appIndex].status = status;
+      appointments_db[appIndex].status = status; // Modify the global array
     } else {
       return { success: false, error: "Appointment not found." };
     }
@@ -85,17 +78,12 @@ export async function updateAppointmentStatus(appointmentId: string, status: "ap
 
 export async function clearAllAppointments(): Promise<{ success: boolean; error?: string }> {
   try {
-    // Simulate Firestore batch delete
-    // const querySnapshot = await getDocs(collection(db, "appointments"));
-    // const batch = writeBatch(db);
-    // querySnapshot.docs.forEach(document => {
-    //   batch.delete(document.ref);
-    // });
-    // await batch.commit();
-    appointments_db = [];
-    nextId = 1; // Reset ID counter for simulation
+    // Clear the global array in place and reset the global ID counter
+    appointments_db.length = 0; 
+    (globalThis as any).nextId_db_malhotra = 1;
 
     revalidatePath("/admin-dashboard");
+    revalidatePath("/patient-dashboard");
     return { success: true };
   } catch (error) {
     console.error("Error clearing appointments:", error);
