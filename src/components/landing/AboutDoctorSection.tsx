@@ -13,7 +13,7 @@ export function AboutDoctorSection() {
         <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
           <div className="md:w-1/3 flex justify-center">
             <Image
-              src="/images/sid.jpg"
+              src="/images/sid2.jpg"
               alt="Dr. Sidharth Malhotra"
               width={300}
               height={300}
@@ -38,7 +38,7 @@ export function AboutDoctorSection() {
                 </p>
                 <div className="flex items-center gap-2 mt-4">
                   <Award className="h-5 w-5 text-accent" />
-                  <span className="font-medium">Specializes in Implants, Root Canals, and Cosmetic Dentistry.</span>
+                  <span className="font-medium">Specializes in Implants and Cosmetic Dentistry.</span>
                 </div>
               </CardContent>
             </Card>

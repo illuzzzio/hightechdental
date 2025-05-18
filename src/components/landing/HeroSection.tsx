@@ -11,7 +11,7 @@ export function HeroSection() {
       <div className="container mx-auto px-4 text-center">
         <div className="max-w-3xl mx-auto">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight mb-6">
-            Welcome to <span className="text-primary">Malhotra Dental Clinic and Implants</span>
+            Welcome to <span className="text-primary">Malhotra Dental Clinic and Implant Center</span>
           </h1>
           <p className="text-lg md:text-xl text-foreground/80 mb-8">
             Expert dental care by Dr. Sidharth Malhotra. We offer a wide range of services from routine check-ups to advanced dental procedures.
@@ -31,7 +31,7 @@ export function HeroSection() {
         </div>
         <div className="mt-12 md:mt-16">
           <Image
-            src="/images/ot.jpg"
+            src="/images/chairs.jpg"
             alt="Malhotra Dental Clinic Interior"
             width={800}
             height={400}
