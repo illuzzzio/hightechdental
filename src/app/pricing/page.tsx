@@ -55,7 +55,7 @@ const pricingItems = [
   {
     category: "Crown & Bridge",
     items: [
-      { name: "Metal", price: 2000 },
+      
       { name: "PFM (Porcelain fused to metal)", price: 3500 },
       { name: "DMLS Crown", price: 4500 },
       { name: "All Ceramic", price: 5000 },
@@ -66,10 +66,10 @@ const pricingItems = [
   {
     category: "Implants",
     items: [
-      { name: "Conventional (Delayed Loading)", price: 18000 },
-      { name: "Immediate Loading Implants", price: 25000 },
-      { name: "Pterigoid Implant", price: 30000 },
-      { name: "Zygomatic Implant", price: 40000 },
+      { name: "Conventional (Delayed Loading)", price: 25000 },
+      { name: "Immediate Loading Implants", price: 30000 },
+      { name: "Pterigoid Implant", price: 35000 },
+      { name: "Zygomatic Implant", price: 45000 },
     ],
   },
   {
@@ -80,7 +80,7 @@ const pricingItems = [
     category: "Orthodontics (Braces)",
     items: [
       { name: "Single Arch", price: 18000 },
-      { name: "Both Arch", price: 28000 },
+      { name: "Both Arch", price: 30000 },
       { name: "Retainers/Arch", price: 2500 },
     ],
   },
