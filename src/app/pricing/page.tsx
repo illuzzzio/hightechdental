@@ -16,9 +16,9 @@ const pricingItems = [
     category: "Extraction / Tooth",
     items: [
       { name: "Simple", price: 500 },
-      { name: "Pedo", price: 500 },
-      { name: "R.C Treated", price: 300 },
-      { name: "Wisdom Tooth", price: 1500 },
+      { name: "Pedo", price: 300 },
+      { name: "R.C Treated", price: 1000 },
+      { name: "Wisdom Tooth", price: 1000 },
       { name: "Impacted Tooth (Surgical Removal)", price: 4000 },
     ],
   },
@@ -33,13 +33,13 @@ const pricingItems = [
     category: "Fillings",
     items: [
       { name: "Temporary", price: 300 },
-      { name: "GIC", price: 500 },
+      { name: "GIC", price: 800 },
       { name: "Light Cure Composite", price: 1200 },
     ],
   },
   {
     category: "Scaling & Polishing",
-    items: [{ name: "", price: 1200 }],
+    items: [{ name: "", price: 1500 }],
   },
   {
     category: "Root Canal Treatment (RCT)",
@@ -58,7 +58,7 @@ const pricingItems = [
       { name: "Metal", price: 2000 },
       { name: "PFM (Porcelain fused to metal)", price: 3500 },
       { name: "DMLS Crown", price: 4500 },
-      { name: "All Ceramic", price: 7500 },
+      { name: "All Ceramic", price: 5000 },
       { name: "Zirconium", price: 7500 },
       { name: "Zirconium Monolithic", price: 9500 },
     ],

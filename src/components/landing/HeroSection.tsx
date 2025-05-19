@@ -31,7 +31,7 @@ export function HeroSection() {
         </div>
         <div className="mt-12 md:mt-16">
           <Image
-            src="/images/chairs.jpg"
+            src="/images/introchair.jpg"
             alt="Malhotra Dental Clinic Interior"
             width={800}
             height={400}
