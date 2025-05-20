@@ -22,16 +22,16 @@ const services = [
     link: "https://youtube.com/shorts/uHlGsTGTRwQ?si=hkjsmfwBc1tHtv-U", // Replace with actual video link
   },
   {
-    title: "General Dentistry",
-    description: "Comprehensive care including cleanings, fillings, and preventive treatments.",
+    title: "ORTHODONTICS (BRACES) and General Dentistry",
+    description: "(Orthodontics) aims to improve both the aesthetic and functional aspects of a person's smile and bite. Orthodontic treatment can involve a variety of appliances, including braces, clear aligners, and removable retainers, to gradually move teeth into their desired positions",
     icon: <Activity className="h-10 w-10 text-primary mb-4" />,
-    link: "https://www.youtube.com/watch?v=scJH8HA8zAM&pp=ygUjZ2VuZXJhbCBkZW50aXN0cnkgdHJlYXRtZW50cyB2aWRlbyA%3D", // Replace with actual video link
+    link: "https://youtube.com/shorts/PDudwluMKCo?si=E4cDwqSU7WuZFt9E", // Replace with actual video link
   },
   {
     title: "Cosmetic Dentistry",
     description: "Enhance your smile with teeth whitening, veneers, and other cosmetic procedures.",
     icon: <CheckCircle2 className="h-10 w-10 text-primary mb-4" />,
-    link: "https://youtube.com/shorts/PDudwluMKCo?si=ZqxQi24XNZfkBC0F", // Replace with actual video link
+    link: "https://youtube.com/shorts/CfNtcsnvPxY?si=rQUigaU0RpN_Bos1", // Replace with actual video link
   },
 ];
 
