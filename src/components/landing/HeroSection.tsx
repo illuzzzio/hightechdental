@@ -29,17 +29,45 @@ export function HeroSection() {
             </Button>
           </div>
         </div>
-        <div className="mt-12 md:mt-16">
-          <Image
-            src="/images/introchair.jpg"
-            alt="Malhotra Dental Clinic Interior"
-            width={800}
-            height={400}
-            className="rounded-lg shadow-2xl mx-auto object-cover"
-            data-ai-hint="dental clinic"
-            priority
-          />
-        </div>
+      <div className="mt-12 md:mt-16 space-y-6">
+  <Image
+    src="/images/introchair.jpg"
+    alt="Malhotra Dental Clinic Interior"
+    width={800}
+    height={400}
+    className="rounded-lg shadow-2xl mx-auto object-cover"
+    data-ai-hint="dental clinic"
+    priority
+  />
+  <Image
+    src="/images/lab1.jpg"
+    alt="Malhotra Dental Clinic Interior"
+    width={800}
+    height={400}
+    className="rounded-lg shadow-2xl mx-auto object-cover"
+    data-ai-hint="dental clinic"
+    priority
+  />
+    <Image
+    src="/images/tech.jpg"
+    alt="Malhotra Dental Clinic Interior"
+    width={800}
+    height={400}
+    className="rounded-lg shadow-2xl mx-auto object-cover"
+    data-ai-hint="dental clinic"
+    priority
+  />
+     <Image
+    src="/images/zod.jpg"
+    alt="Malhotra Dental Clinic Interior"
+    width={800}
+    height={400}
+    className="rounded-lg shadow-2xl mx-auto object-cover"
+    data-ai-hint="dental clinic"
+    priority
+  />
+</div>
+
       </div>
     </section>
   );
