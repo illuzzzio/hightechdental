@@ -1,6 +1,6 @@
 # 🦷 CureMyTeeth - Dental Appointment Booking & AI Chatbot Platform
 
-**Live Demo**: 🌐 [https://curemyteeth.com](https://curemyteeth.com)
+**Live Demo**: 🌐 [https://cureyourteeth.com](https://curemyteeth.com)
 
 CureMyTeeth is a modern, AI-powered dental appointment booking application built using **Next.js**, **Tailwind CSS**, and **Genkit AI Flows**. Designed for **Dr. Sidharth Malhotra** in **Mandi, Himachal Pradesh**, the platform helps patients easily book appointments and get instant dental advice via an integrated AI chatbot.
 
