@@ -19,7 +19,7 @@ const pricingItems = [
       { name: "Pedo", price: 300 },
       { name: "R.C Treated", price: 1000 },
       { name: "Wisdom Tooth", price: 1000 },
-      { name: "Impacted Tooth (Surgical Removal)", price: 4000 },
+      { name: "Impacted Tooth (Surgical Removal)", price: 5000 },
     ],
   },
   {
@@ -44,7 +44,7 @@ const pricingItems = [
   {
     category: "Root Canal Treatment (RCT)",
     items: [
-      { name: "Single Visit", price: 4000 },
+      { name: "Single Visit", price: 4500 },
       { name: "Multiple Visit", price: 3500 },
     ],
   },
@@ -79,7 +79,7 @@ const pricingItems = [
   {
     category: "Orthodontics (Braces)",
     items: [
-      { name: "Single Arch", price: 18000 },
+      { name: "Single Arch", price: 20000 },
       { name: "Both Arch", price: 30000 },
       { name: "Retainers/Arch", price: 2500 },
     ],
