@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-inter), sans-serif;
+  background-image: radial-gradient(circle at 15% 0%, hsl(var(--primary) / 0.08), transparent 32rem);
 }
 
 @layer base {
@@ -43,25 +44,25 @@ body {
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
-    --background: 220 20% 10%; /* Dark Blue/Gray */
-    --foreground: 210 70% 85%; /* Light Blue */
-    --card: 220 20% 12%;
-    --card-foreground: 210 70% 85%;
-    --popover: 220 20% 10%;
-    --popover-foreground: 210 70% 85%;
-    --primary: 180 80% 40%; /* Brighter Teal */
-    --primary-foreground: 220 20% 5%; /* Very Dark Blue/Gray */
-    --secondary: 220 20% 15%; /* Darker Gray */
-    --secondary-foreground: 210 70% 85%;
-    --muted: 220 20% 15%;
-    --muted-foreground: 210 30% 60%; /* Muted Light Blue */
-    --accent: 180 70% 50%; /* Even brighter Teal */
-    --accent-foreground: 220 20% 5%;
+    --background: 0 0% 3%;
+    --foreground: 180 16% 92%;
+    --card: 0 0% 6%;
+    --card-foreground: 180 16% 92%;
+    --popover: 0 0% 5%;
+    --popover-foreground: 180 16% 92%;
+    --primary: 174 72% 48%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 180 8% 11%;
+    --secondary-foreground: 180 16% 92%;
+    --muted: 180 8% 11%;
+    --muted-foreground: 180 8% 65%;
+    --accent: 38 92% 64%;
+    --accent-foreground: 0 0% 4%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 220 20% 20%;
-    --input: 220 20% 20%;
-    --ring: 180 80% 40%; /* Brighter Teal for rings */
+    --border: 180 8% 18%;
+    --input: 180 8% 18%;
+    --ring: 174 72% 48%;
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -83,6 +84,6 @@ body {
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply min-w-0 bg-background text-foreground transition-colors duration-300;
   }
 }

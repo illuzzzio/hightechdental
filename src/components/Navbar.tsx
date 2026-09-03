@@ -47,26 +47,23 @@ export function Navbar() {
   };
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 shadow-sm">
-      <div className="container flex h-16 max-w-screen-2xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
+    <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/90 backdrop-blur supports-[backdrop-filter]:bg-background/70 shadow-sm">
+      <div className="container flex min-h-16 max-w-screen-2xl flex-wrap items-center justify-between gap-x-4 gap-y-2 px-4 py-3 sm:px-6 lg:px-8">
+        <Link href="/" className="flex min-w-0 items-center gap-2 transition-opacity hover:opacity-80">
           <ToothIcon />
-          <span className="font-bold text-lg tracking-tight text-primary">Malhotra Dental Clinic</span>
+          <span className="truncate text-sm font-bold tracking-tight text-primary sm:text-lg">Malhotra Dental Clinic</span>
         </Link>
-        <nav className="flex items-center gap-4 md:gap-6">
-          <Link href="/" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
+        <nav className="flex max-w-full flex-wrap items-center justify-end gap-x-3 gap-y-2 sm:gap-x-5">
+          <Link href="/" className="text-xs font-medium text-foreground/80 transition-colors hover:text-foreground sm:text-sm">
             Home
           </Link>
-           <Link href="/pricing" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
-            Pricing
-          </Link>
-          <Link href="/#services" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
+          <Link href="/#services" className="text-xs font-medium text-foreground/80 transition-colors hover:text-foreground sm:text-sm">
             Services
           </Link>
-          <Link href="/#book-appointment" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground">
+          <Link href="/#book-appointment" className="text-xs font-medium text-foreground/80 transition-colors hover:text-foreground sm:text-sm">
             Book Appointment
           </Link>
-          <Link href="/ai-assistant" className="text-sm font-medium text-foreground/80 transition-colors hover:text-foreground flex items-center gap-1">
+          <Link href="/ai-assistant" className="flex items-center gap-1 text-xs font-medium text-foreground/80 transition-colors hover:text-foreground sm:text-sm">
             <BotMessageSquare className="h-4 w-4" /> AI Assistant
           </Link>
           
